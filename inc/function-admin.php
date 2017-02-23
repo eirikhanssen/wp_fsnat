@@ -15,7 +15,7 @@ function fsnat_add_admin_page() {
 		'manage_options', /*capability (user permissions required to access menu)*/
 		'fsnat_settings', /*menu_slug*/
 		'fsnat_create_page',  /*function*/
-		get_template_directory_uri() . '/img/storysciene-icon.png', /*icon_url*/
+		get_template_directory_uri() . '/img/fsnat-icon.png', /*icon_url*/
 		110 /*position of menu item*/
 		);
 
