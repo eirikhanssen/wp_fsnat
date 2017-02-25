@@ -43,10 +43,12 @@ function fsnat_add_admin_page() {
 }
 
 function fsnat_custom_settings () {
+	register_setting( 'fsnat-settings-group', 'profile_picture');
 	register_setting( 'fsnat-settings-group', 'first_name');
 	register_setting( 'fsnat-settings-group', 'last_name');
 	register_setting( 'fsnat-settings-group', 'description');
 
+	add_settings_field( 'sidebar-profile-picture', 'Profile picture', 'fsnat_sidebar_profile', 'fsnat_settings', 'fsnat-sidebar-options');
 	add_settings_section( 'fsnat-sidebar-options', 'Sidebar Options', 'fsnat_sidebar_options', 'fsnat_settings');
 	
 	add_settings_field( 'sidebar-name', 'Full Name', 'fsnat_sidebar_name', 'fsnat_settings', 'fsnat-sidebar-options');
@@ -56,6 +58,13 @@ function fsnat_custom_settings () {
 
 function fsnat_sidebar_options() {
 	echo 'Customize your Sidebar Information';
+}
+
+function fsnat_sidebar_profile() {
+	$picture = esc_attr( get_option( 'profile_picture' ) );
+	
+	$output = '<input class="button button-secondary" type="button" value="Upload Profile Picture" id="upload-button"/><input type="hidden" id="profile-picture" name="first_name" value="' . $picture . '"∕>';
+	echo $output;
 }
 
 function fsnat_sidebar_name() {
