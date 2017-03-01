@@ -73,7 +73,7 @@ function fsnat_custom_css_section_callback() {
 function fsnat_custom_css_callback() {
 	$css = get_option('fsnat_css');
 	$css = ( empty($css) ? '/*Fsnat tilpasset CSS*/' : $css );
-	echo '<textarea placeholder="Fsnat tilpasset CSS">'.$css.'</textarea>';
+	echo '<div id="customCSS">'.$css.'</div>';
 }
 
 
