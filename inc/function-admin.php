@@ -43,6 +43,8 @@ function fsnat_add_admin_page() {
 }
 
 function fsnat_custom_settings () {
+
+	// sidebar options
 	register_setting( 'fsnat-settings-group', 'profile_picture');
 	register_setting( 'fsnat-settings-group', 'first_name');
 	register_setting( 'fsnat-settings-group', 'last_name');
@@ -54,7 +56,27 @@ function fsnat_custom_settings () {
 	add_settings_field( 'sidebar-name', 'Full Name', 'fsnat_sidebar_name', 'fsnat_settings', 'fsnat-sidebar-options');
 
 	add_settings_field( 'sidebar-description', 'Description', 'fsnat_sidebar_description', 'fsnat_settings', 'fsnat-sidebar-options');
+
+	// Custom CSS Options
+	register_setting('fsnat-custom-css-options', 'fsnat_css');
+
+	add_settings_section('fsnat-custom-css-section', 'Custom CSS', 'fsnat_custom_css_section_callback', 'fsnat_settings_css');
+
+	add_settings_field('custom-css','Insert your Custom CSS', 'fsnat_custom_css_callback', 'fsnat_settings_css', 'fsnat-custom-css-section');
 }
+
+
+function fsnat_custom_css_section_callback() {
+	echo 'Tilpass utseendet med din egen CSS';
+}
+
+function fsnat_custom_css_callback() {
+	$css = get_option('fsnat_css');
+	$css = ( empty($css) ? '/*Fsnat tilpasset CSS*/' : $css );
+	echo '<textarea placeholder="Fsnat tilpasset CSS">'.$css.'</textarea>';
+}
+
+
 
 function fsnat_sidebar_options() {
 	echo 'Customize your Sidebar Information';
@@ -90,5 +112,5 @@ function fsnat_create_page() {
 
 function fsnat_settings_page() {
 	// generation of our CSS admin page
-	require_once( get_template_directory() . '/inc/templates/fsnat-admin.php');
+	require_once( get_template_directory() . '/inc/templates/fsnat-custom-css.php');
 }
