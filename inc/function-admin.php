@@ -1,7 +1,7 @@
 <?php
 
 /*
-@package fsnat
+@package hfw_fsnat
 	==================
 		ADMIN PAGE
 	==================
