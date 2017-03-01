@@ -58,7 +58,7 @@ function fsnat_custom_settings () {
 	add_settings_field( 'sidebar-description', 'Description', 'fsnat_sidebar_description', 'fsnat_settings', 'fsnat-sidebar-options');
 
 	// Custom CSS Options
-	register_setting('fsnat-custom-css-options', 'fsnat_css');
+	register_setting('fsnat-custom-css-options', 'fsnat_css', 'fsnat_sanitize_custom_css');
 
 	add_settings_section('fsnat-custom-css-section', 'Custom CSS', 'fsnat_custom_css_section_callback', 'fsnat_settings_css');
 
@@ -101,6 +101,12 @@ function fsnat_sidebar_description() {
 	$description = esc_attr( get_option( 'description' ) );
 	$output = '<input type="text" name="description" value="' . $description . '" placeholder="Menu description" ∕><p class="description">Write something smart</p>';
 	echo $output;
+}
+
+// Sanitation settings
+function fsnat_sanitize_custom_css( $input ) {
+	$output = esc_textarea( $input );
+	return $output;
 }
 
 add_action('admin_menu','fsnat_add_admin_page');
